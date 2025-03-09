@@ -1,0 +1,25 @@
+## To run command or scripts
+
+Firstly, install [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) , using the package manager in your distro.
+
+Then, run these commands
+
+```bash
+$ git clone https://github.com/hefatss/scripts
+$ cd scripts
+$ bash setup/<name of script>
+```
+or
+
+```
+* Get link raw scripts
+$ bash <(curl -s <link_raw_scripts>) -$option (if available option)
+```
+
+Please run the correct script depending on the distro you have installed!
+
+Enjoy!
+
+
+## Pull Request
+You can send Pull Request for update or add scripts
