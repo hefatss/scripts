@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Kernel-build Script by danielml3@github
+# Script adapt for topaz by hefatss@github
+# This Script helps to Build GkI kernel with external modules without help of kernel_platform source.
+# also it generates modules.load list.
+
 set -e
 
 # Kernel tools from AOSP
@@ -18,35 +23,31 @@ O=out
 OUT_DIR=$KERNEL_SRC/$O
 INSTALL_MOD_PATH=modules_out
 
-if [[ "$TARGET" == "socrates" ]]; then
-    TARGET_DEFCONFIG="gki_defconfig vendor/kalama_GKI.config vendor/socrates_GKI.config"
+if [[ "$TARGET" == "topaz" ]]; then
+    TARGET_DEFCONFIG="gki_defconfig vendor/bengal_GKI.config vendor/topaz_GKI.config"
     TARGET_KERNEL_EXT_MODULES="
     	qcom/opensource/mmrm-driver
-    	qcom/opensource/mm-drivers/hw_fence
-    	qcom/opensource/mm-drivers/msm_ext_display
-    	qcom/opensource/mm-drivers/sync_fence
-    	qcom/opensource/audio-kernel
-    	qcom/opensource/camera-kernel
-    	qcom/opensource/dataipa/drivers/platform/msm
-    	qcom/opensource/datarmnet/core
-    	qcom/opensource/datarmnet-ext/aps
-    	qcom/opensource/datarmnet-ext/offload
-    	qcom/opensource/datarmnet-ext/shs
-    	qcom/opensource/datarmnet-ext/perf
-    	qcom/opensource/datarmnet-ext/perf_tether
-    	qcom/opensource/datarmnet-ext/sch
-    	qcom/opensource/datarmnet-ext/wlan
-    	qcom/opensource/securemsm-kernel
-    	qcom/opensource/display-drivers/msm
-    	qcom/opensource/eva-kernel
-    	qcom/opensource/video-driver
-    	qcom/opensource/graphics-kernel
-    	qcom/opensource/wlan/platform
-    	qcom/opensource/wlan/qcacld-3.0/.kiwi_v2
-    	qcom/opensource/bt-kernel
-    	nxp/opensource/driver"
-    TARGET_KERNEL_EXT_MODULE_ROOT=$KERNEL_SRC/../socrates-modules
-    FIRST_STAGE_MODULES_LIST="modules.list.msm.kalama"
+        qcom/opensource/audio-kernel
+        qcom/opensource/camera-kernel
+        qcom/opensource/dataipa/drivers/platform/msm
+        qcom/opensource/datarmnet/core
+        qcom/opensource/datarmnet-ext/aps
+        qcom/opensource/datarmnet-ext/offload
+        qcom/opensource/datarmnet-ext/shs
+        qcom/opensource/datarmnet-ext/perf
+        qcom/opensource/datarmnet-ext/perf_tether
+        qcom/opensource/datarmnet-ext/sch
+        qcom/opensource/datarmnet-ext/wlan
+        qcom/opensource/display-drivers/msm
+        qcom/opensource/video-driver
+        qcom/opensource/securemsm-kernel
+        qcom/opensource/graphics-kernel
+        qcom/opensource/touch-drivers
+        qcom/opensource/wlan/platform
+        qcom/opensource/wlan/qcacld-3.0
+        qcom/opensource/bt-kernel"
+    TARGET_KERNEL_EXT_MODULE_ROOT=$KERNEL_SRC/../sm6225-modules
+    FIRST_STAGE_MODULES_LIST="modules.list.msm.bengal"
     RECOVERY_EXT_MODULES="msm_drm.ko"
 else
     echo "Unknown target $TARGET"
